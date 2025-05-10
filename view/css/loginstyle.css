@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body 
+{
+
+height: 100vh;
+align-items: center;
+justify-content: center;
+background-color: #C6C5E1;
+
+display: flex;
+}
+ 
+#header 
+{
+    display: flex;
+    align-items: center;
+    color: #4E51A2;
+  
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+   
+}
+
+#header img{
+  
+width: 100px;
+border-radius: 50px;
+
+}
+#header h1{
+    
+ color: #4E51A2; 
+ 
+
+
+}
+
+.container{
+
+    margin: 0 15px;
+}
+ 
+.form-box{
+
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;  
+    background: #4E51A2;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0, 0.1);
+    
+}
+h2{
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+input{
+    width: 100%;
+    padding: 12px;
+    background-color: aliceblue;
+        border-radius: 6px;
+border: none;
+outline:none;
+font-size: 16PX;
+color: #333;
+margin-bottom: 20px;
+
+}
+button{
+    margin-top: 20px;
+   transform: translate(50%,-50%);
+    width: 50%;
+    padding: 12px;
+    background: wheat;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+color: #000;
+font-weight: 500;
+margin-bottom: 20px;
+transition: 0.5s;
+}
+button:hover
+{
+    background: whitesmoke;
+}
+p{
+    font-size: 14.5px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+p a 
+{
+    color: wheat;
+    text-decoration: none;
+
+
+}
+p a:hover
+{
+    text-decoration: underline;
+}
+/* Style for the select element */
+select {
+    width: 100%;  /* Makes the select take the full width */
+    padding: 10px 15px;  /* Adds padding inside the select */
+    margin: 10px 0;  /* Adds space above and below the select */
+    font-size: 16px;  /* Sets the font size */
+    border: 2px solid #ccc;  /* Light grey border */
+    border-radius: 5px;  /* Rounded corners */
+    background-color: #fff;  /* White background */
+    color: #333;  /* Text color */
+    transition: all 0.3s ease;  /* Smooth transition for changes */
+}
+
+/* Style for when the select element is focused */
+select:focus {
+    border-color: blueviolet;  /* Green border on focus */
+    outline: none;  /* Removes the default focus outline */
+}
+
+/* Add some styles to the label */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 14px;
+    color: white;  /* Slightly darker text for the label */
+}
+
+/* Style for the options inside the select */
+select option {
+    padding: 10px;  /* Adds padding inside options */
+    background-color: #fff;  /* White background for options */
+    color: #333;  /* Dark text color */
+}
+
+/* Hover effect for the options */
+select option:hover {
+    background-color: #f1f1f1;  /* Light grey background on hover */
+}

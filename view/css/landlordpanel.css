@@ -1,0 +1,335 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    background: #4A47A3;
+    color: white;
+    padding: 20px;
+    transition: width 0.3s ease;
+}
+
+.sidebar h2 {
+    font-size: 22px;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    color: white;
+    background: #5A56B9;
+    border-radius: 5px;
+}
+
+.sidebar ul li a:hover, .sidebar ul li a.active {
+    background: #3A37A3;
+}
+
+.main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.stats {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.stat-box {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    text-align: center;
+}
+
+.stat-box span {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+table {
+    
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.add-btn, .approve, .reject, .edit, .delete, .save {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-btn {
+    background: green;
+    color: white;
+}
+
+.approve {
+    background: #28a745;
+    color: white;
+}
+
+.reject {
+    background: #dc3545;
+    color: white;
+}
+
+.edit {
+    background: #007bff;
+    color: white;
+}
+
+.delete {
+    background: #ff4444;
+    color: white;
+}
+
+.save {
+    background: #007bff;
+    color: white;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.add-listing-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.add-listing-form h2 {
+    color: #5e17eb;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.add-listing-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.add-listing-form .form-group label {
+    font-weight: 600;
+    color: #333;
+}
+
+.add-listing-form input,
+.add-listing-form textarea,
+.add-listing-form select {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.add-listing-form input:focus,
+.add-listing-form textarea:focus,
+.add-listing-form select:focus {
+    outline: none;
+    border-color: #5e17eb;
+    box-shadow: 0 0 0 2px rgba(94, 23, 235, 0.1);
+}
+
+.add-listing-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.add-listing-form input[type="file"] {
+    padding: 8px;
+    border: 1px dashed #ccc;
+    background: #f9f9f9;
+}
+
+.add-listing-form input[type="file"]::file-selector-button {
+    padding: 8px 12px;
+    background: #5e17eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: background 0.3s;
+}
+
+.add-listing-form input[type="file"]::file-selector-button:hover {
+    background: #4a0fcb;
+}
+
+.submit-btn {
+    padding: 12px 20px;
+    background: #5e17eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background: #4a0fcb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(94, 23, 235, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    .add-listing-form {
+        margin: 10px;
+        padding: 1.5rem;
+    }
+
+    .add-listing-form h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 10px 12px;
+    }
+
+    .stats {
+        flex-direction: column;
+    }
+}
+/* Amenities Grid */
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.amenity-item input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Status Indicators */
+.status-pending {
+    color: #ff9800;
+    font-weight: 500;
+}
+
+.status-approved {
+    color: #4caf50;
+    font-weight: 500;
+}
+
+.status-rejected {
+    color: #f44336;
+    font-weight: 500;
+}
+
+/* Buttons */
+.approve, .edit-btn {
+    background: #4caf50;
+    color: white;
+}
+
+.reject, .delete-btn {
+    background: #f44336;
+    color: white;
+}
+
+.actions button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
