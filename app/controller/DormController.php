@@ -31,13 +31,14 @@ class DormController {
     }
 
     public function getStudentInfo($userId) {
-        $stmt = $this->db->prepare("SELECT name, phone_number FROM users WHERE id = ?");
+        $stmt = $this->db->prepare("SELECT name, phone_number, email FROM users WHERE id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_assoc();
-        
+        $user = $result->fetch_assoc();
+        return $user ? $user : null;
     }
+    
     
     
 }

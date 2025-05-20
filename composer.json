@@ -1,0 +1,19 @@
+{
+    "name": "fares/dormproject4",
+    "description": "dorm rental",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Fares\\Dormproject4\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "faresalkhatib",
+            "email": "fares24681234@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.10"
+    }
+}
