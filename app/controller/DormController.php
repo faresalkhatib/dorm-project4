@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../model/connection.php';
 require_once __DIR__ . '/../model/dorm.php';
+// ------------------ this controller is manly used in dorm details page------------------
 
 class DormController {
     private $db;

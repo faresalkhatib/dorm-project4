@@ -56,7 +56,10 @@ elseif(empty($pass))
                 header("Location:/view/browse.php");
                 exit();
                 break;
-                
+                  case 'admin': 
+                header("Location:/view/admin_panel.php");
+                exit();
+                break;
             default:
                 // Fallback for invalid/unknown roles
                 echo"wrong role";

@@ -63,8 +63,9 @@ if (isset($_SESSION['user_id'])) {
                 foreach ($images as $index => $image) {
                     $image = trim($image);
                     if (!empty($image)) {
-                        echo '<div class="gallery-item" onclick="openLightbox(' . $index . ')">';
-                        echo '<img src="/../app/model/uploads/' . htmlspecialchars($image) . '" alt="Dorm Photo">';
+                        // Add data-index and data-src for JS
+                        echo "<div class=\"gallery-item\" onclick=\"openLightbox($index)\">";
+                        echo '<img src="/../app/model/uploads/' . htmlspecialchars($image) . '" alt="Dorm Photo" data-index="' . $index . '" data-src="/../app/model/uploads/' . htmlspecialchars($image) . '">';
                         echo '</div>';
                     }
                 }
@@ -72,6 +73,44 @@ if (isset($_SESSION['user_id'])) {
                 echo '<div class="no-images">No images available for this dorm</div>';
             }
             ?>
+            <script>
+                // Prepare images array for lightbox navigation
+                const galleryImages = [
+                    <?php
+                    $imgArr = [];
+                    foreach ($images as $img) {
+                        $img = trim($img);
+                        if (!empty($img)) {
+                            $imgArr[] = "'/../app/model/uploads/" . addslashes(htmlspecialchars($img)) . "'";
+                        }
+                    }
+                    echo implode(',', $imgArr);
+                    ?>
+                ];
+                let currentImgIndex = 0;
+
+                function openLightbox(index) {
+                    currentImgIndex = index;
+                    document.getElementById('lightbox-img').src = galleryImages[index];
+                    document.getElementById('lightbox').style.display = 'block';
+                }
+
+                function closeLightbox() {
+                    document.getElementById('lightbox').style.display = 'none';
+                }
+
+                function changeImage(direction) {
+                    currentImgIndex += direction;
+                    if (currentImgIndex < 0) currentImgIndex = galleryImages.length - 1;
+                    if (currentImgIndex >= galleryImages.length) currentImgIndex = 0;
+                    document.getElementById('lightbox-img').src = galleryImages[currentImgIndex];
+                }
+
+                // Optional: Close lightbox on outside click
+                document.getElementById('lightbox').addEventListener('click', function(e) {
+                    if (e.target === this) closeLightbox();
+                });
+            </script>
         </div>
 
         <div class="details-grid">
@@ -100,7 +139,9 @@ if (isset($_SESSION['user_id'])) {
                     <p><i class="fas fa-user"></i> <?= htmlspecialchars($owner['name']) ?></p>
                     <p><i class="fas fa-envelope"></i> <?= htmlspecialchars($owner['email']) ?></p>
                     <p><i class="fas fa-phone"></i> <?= htmlspecialchars($owner['phone_number'] ?? 'Not provided') ?>
-                    </p>
+                                        <p><i class="fas fa-bank"></i> <?= htmlspecialchars($owner['Cliq'] ?? 'Not provided') ?>
+
+                </p>
                 </div>
 
                 <?php if (!empty($student)): ?>
@@ -128,10 +169,22 @@ if (isset($_SESSION['user_id'])) {
                                         <i class="fas fa-spinner fa-spin"></i>
                                     </div>
                                 </button>
-                            <?php else: ?>
-                                <p class="text-warning">Please complete your profile information before booking.</p>
+                                
+                                
+
+
+                        
+                              
                             <?php endif; ?>
                         </form>
+                    </div> 
+                      <?php else: ?>
+                    <div class="login-prompt">
+                        <h3>Want to book this dorm?</h3>
+                        <p>Please log in to send a booking request</p>
+                        <a href="login.php?redirect=<?= urlencode($_SERVER['REQUEST_URI']) ?>" class="login-btn">
+                            <i class="fas fa-sign-in-alt"></i> Log In
+                        </a>
                     </div>
                 <?php endif; ?>
             </div>

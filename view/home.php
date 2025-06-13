@@ -29,10 +29,11 @@
                 Landlords can list and manage rentals effortlessly, connecting with student tenants in just a few clicks.
             </p>
         <div class="search">
-        <input type="text" class="search-box" placeholder=" Find dorms" >
-    
-    <button>Search</button>
-    </div>
+            <form action="browse.php" method="get">
+                
+                <button type="submit">Browse Dorms </button>
+            </form>
+        </div>
         
       
 
