@@ -61,7 +61,7 @@ function buildUrl($page, $currentFilters) {
 // Handle logout
 if (isset($_GET['logout'])) {
     session_destroy();
-    header('Location: ' . strtok($_SERVER["REQUEST_URI"], '?')); // Redirect to same page without parameters
+    header('Location: home.php'); // Redirect to the home page
     exit();
 }
 ?>
@@ -400,38 +400,13 @@ if (isset($_GET['logout'])) {
                         <i class="fas fa-spinner fa-spin"></i>
                     </div>
                 </button>
-                <form id="complaintForm" style="display:none; margin-top: 15px;" method="POST" action="">
+               <form id="complaintForm" style="display:none; margin-top: 15px;" method="POST" action="../app/model/complaints.php">
+                    <input type="text" name="user_id" value="<?= isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>" hidden>
                     <input type="text" name="subject" placeholder="Subject" required style="width:100%;margin-bottom:8px;">
                     <textarea name="message" placeholder="Describe your complaint..." required style="width:100%;height:80px;margin-bottom:8px;"></textarea>
                     <button type="submit" class="btn">Submit Complaint</button>
                 </form>
-                <?php
-                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['subject'], $_POST['message'])) {
-                    if (!empty($_SESSION['user_id'])) {
-                        $userId = intval($_SESSION['user_id']);
-                        $subject = trim($_POST['subject']);
-                        $message = trim($_POST['message']);
-                        if ($subject && $message) {
-                            $mysqli = new mysqli("localhost", "root", "24681234", "dorm_project"); // Change DB credentials
-                            if (!$mysqli->connect_errno) {
-                                $stmt = $mysqli->prepare("INSERT INTO complaints (user_id, subject, message) VALUES (?, ?, ?)");
-                                $stmt->bind_param("iss", $userId, $subject, $message);
-                                if ($stmt->execute()) {
-                                    echo '<div style="color:green;margin-top:8px;">Complaint submitted!</div>';
-                                } else {
-                                    echo '<div style="color:red;margin-top:8px;">Error submitting complaint.</div>';
-                                }
-                                $stmt->close();
-                                $mysqli->close();
-                            } else {
-                                echo '<div style="color:red;margin-top:8px;">Database connection error.</div>';
-                            }
-                        }
-                    } else {
-                        echo '<div style="color:red;margin-top:8px;">You must be logged in to submit a complaint.</div>';
-                    }
-                }
-                ?>
+             
             </div>
             <script>
             document.getElementById('complaintBtn').addEventListener('click', function() {

@@ -85,7 +85,27 @@ if ($bookingStats && $bookingStats->num_rows > 0) {
 </head>
 
 <style>
+    .logout-btn {
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        width: 90%;
+        margin-left: 5%;
+        font-size: 14px;
+        transition: background-color 0.3s;
+    }
     
+    .logout-btn:hover {
+        background-color: #c82333;
+    }
+    
+    .logout-btn i {
+        margin-right: 8px;
+    }
 </style>
 <body>
     <div class="container">
@@ -98,6 +118,11 @@ if ($bookingStats && $bookingStats->num_rows > 0) {
                 <li><a href="#bookings"> Booking Requests</a></li>
                 <li><a href="#settings"> Settings</a></li>
             </ul>
+            <!-- Logout Button -->
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
         </div>
 
         <!-- Main Content -->
@@ -212,33 +237,41 @@ if ($bookingStats && $bookingStats->num_rows > 0) {
                                 <td>
                                     <button class="open-button" onclick="openForm()">Edit</button>
                                     <!-- Edit form popup -->
-                                    <div class="form-popup" id="myForm">
+                                                 <div class="form-popup" id="myForm">
                                         <form action="/../app/model/Editmodel.php" class="form-container" method="post">
                                             <h1>edit dorm</h1>
+
                                             <label for="titel"><b>Titel</b></label>
-                                            <input type="text" placeholder="Enter titel" value="<?php echo $row['title']; ?>" name="title" required>
+                                            <input type="text" placeholder="Enter titel" name="title" required>
                                             <label for="price"><b>price</b></label>
-                                            <input type="number" placeholder="Enter price" value="<?php echo $row['price']; ?>" name="price" required>
+                                            <input type="number" placeholder="Enter price" name="price" required>
                                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                            <label for="description"   ><b>description</b></label>
-                                            <input type="text" placeholder="Enter description"value="<?php echo $row['description']; ?>" name="description" required >
+                                            <label for="description"><b>description</b></label>
+                                            <input type="text" placeholder="Enter description" name="description" required>
                                             <div class="form-group">
                                                 <label for="amenities">Amenities:</label><br>
-                                                <label><input type="checkbox" name="amenities[]" value="Wi-Fi"> Wi-Fi</label><br>
-                                                <label><input type="checkbox" name="amenities[]" value="Air Conditioning"> Air Conditioning</label><br>
-                                                <label><input type="checkbox" name="amenities[]" value="Laundry"> Laundry</label><br>
-                                                <label><input type="checkbox" name="amenities[]" value="Parking"> Parking</label><br>
+                                                <label><input type="checkbox" name="amenities[]" value="Wi-Fi">
+                                                    Wi-Fi</label><br>
+                                                <label><input type="checkbox" name="amenities[]" value="Air Conditioning"> Air
+                                                    Conditioning</label><br>
+                                                <label><input type="checkbox" name="amenities[]" value="Laundry">
+                                                    Laundry</label><br>
+                                                <label><input type="checkbox" name="amenities[]" value="Parking">
+                                                    Parking</label><br>
                                                 <label><input type="checkbox" name="amenities[]" value="gym"> Gym</label><br>
-                                                <label><input type="checkbox" name="amenities[]" value="Cleaning"> cleaning</label><br>
+                                                <label><input type="checkbox" name="amenities[]" value="Cleaning">
+                                                    cleaning</label><br>
+                                                <!-- Add more as needed -->
                                             </div>
-                                            <button type="submit" class="btn">edit</button>
+
+                                            <button type="submit" class="btn">edti</button>
                                             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                                         </form>
                                     </div>
                                    
                                     <form action="/../app/model/deletelisting.php" method="post">
                                         <input type="hidden" name="listing_id" value="<?php echo $row['id'] ?>">
-                                        <button type="submit" class="delete" onclick="return confirm('Are you sure you want to delete this listing?');">Delete</button>
+                                        <button type="submit" class="delete">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -309,7 +342,7 @@ if ($bookingStats && $bookingStats->num_rows > 0) {
                                 <td><?php echo htmlspecialchars($row['dorm_name']); ?></td>
                                 <td><?php echo htmlspecialchars($row['std_number']); ?></td>
                                 <td><?php echo htmlspecialchars($row['std_name']); ?></td>
-                                <td class="<?php echo htmlspecialchars($row['status']); ?>">
+                                <td class="<?php echo htmlspecialchars($row['status']); ?> status " id="<?php echo htmlspecialchars($row['id']); ?>">
                                     <?php echo htmlspecialchars(ucfirst($row['status'])); ?>
                                 </td>
                                 <td>
@@ -420,6 +453,13 @@ if ($bookingStats && $bookingStats->num_rows > 0) {
             document.getElementById("myForm").style.display = "none";
         }
 
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'home.php';
+            }
+        }
+
         // Booking approval/rejection
         document.querySelectorAll('.approve, .reject').forEach(button => {
             button.addEventListener('click', function () {
@@ -436,7 +476,8 @@ if ($bookingStats && $bookingStats->num_rows > 0) {
                 .then(res => res.text())
                 .then(msg => {
                     alert(msg);
-                    location.reload();
+                    document.getElementById(bookingId).textContent = status.charAt(0).toUpperCase() + status.slice(1);
+                   
                 })
                 .catch(err => {
                     alert("Error: " + err);

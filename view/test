@@ -1,0 +1,37 @@
+<!-- The form  for editing         -->
+                                    <div class="form-popup" id="myForm">
+                                        <form action="/../app/model/Editmodel.php" class="form-container" method="post">
+                                            <h1>edit dorm</h1>
+
+                                            <label for="titel"><b>Titel</b></label>
+                                            <input type="text" placeholder="Enter titel" name="title" required>
+                                            <label for="price"><b>price</b></label>
+                                            <input type="number" placeholder="Enter price" name="price" required>
+                                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                            <label for="description"><b>description</b></label>
+                                            <input type="text" placeholder="Enter description" name="description" required>
+                                            <div class="form-group">
+                                                <label for="amenities">Amenities:</label><br>
+                                                <label><input type="checkbox" name="amenities[]" value="Wi-Fi">
+                                                    Wi-Fi</label><br>
+                                                <label><input type="checkbox" name="amenities[]" value="Air Conditioning"> Air
+                                                    Conditioning</label><br>
+                                                <label><input type="checkbox" name="amenities[]" value="Laundry">
+                                                    Laundry</label><br>
+                                                <label><input type="checkbox" name="amenities[]" value="Parking">
+                                                    Parking</label><br>
+                                                <label><input type="checkbox" name="amenities[]" value="gym"> Gym</label><br>
+                                                <label><input type="checkbox" name="amenities[]" value="Cleaning">
+                                                    cleaning</label><br>
+                                                <!-- Add more as needed -->
+                                            </div>
+
+                                            <button type="submit" class="btn">edti</button>
+                                            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                        </form>
+                                    </div>
+                                   
+                                    <form action="/../app/model/deletelisting.php" method="post">
+                                        <input type="hidden" name="listing_id" value="<?php echo $row['id'] ?>">
+                                        <button type="submit" class="delete">Delete</button>
+                                    </form>

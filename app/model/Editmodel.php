@@ -12,7 +12,7 @@ try {
         $description = $_POST["description"];
         $amenities = $_POST['amenities'] ?? [];
         $amenitiesString = implode(',', $amenities);
-
+echo $listingid;
         if (empty($title) || empty($price) || empty($description)) {
             die("Error: All fields are required.");
         }
