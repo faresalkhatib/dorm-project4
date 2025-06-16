@@ -12,6 +12,10 @@ require_once __DIR__ . "/../app/model/connection.php";
 
 ?>
 
+<?php 
+require_once 'protection.php'; // Add this line to every PHP file
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,4 +1,6 @@
-<?php   require_once __DIR__ . '/../model/connection.php';
+<?php 
+require_once 'protection.php'; // Add this line to every PHP file
+?><?php   require_once __DIR__ . '/../model/connection.php';
 
 
 
@@ -27,7 +29,7 @@ class Bookingscontroler{
 
         
         $sql = $this->conn->prepare("SELECT * FROM bookings ");
-        // "i" for integer parameter
+        // admin panel use only
         $sql->execute();
         return $sql->get_result();
     }
@@ -43,7 +45,7 @@ class Bookingscontroler{
     }
      public function listings2()
     {
-
+   // admin panel use only
         
         $sql = $this->conn->prepare("SELECT * FROM listings ");
        
@@ -67,7 +69,7 @@ public function getBookingStats($landlord_id) {
     return $query->get_result();
 }
 public function GetAllusers()
-{
+{   // admin panel use only
     $sql = $this->conn->prepare("SELECT * FROM users");
     $sql->execute();
     return $sql->get_result();
@@ -83,7 +85,7 @@ public function Getuserinfo($id)
 
 }
 public function getComplaints()
-{
+{   // admin panel use only
     $sql = $this->conn->prepare("SELECT * FROM complaints");
     $sql->execute();
     return $sql->get_result();

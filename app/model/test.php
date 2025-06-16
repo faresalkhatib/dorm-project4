@@ -6,3 +6,6 @@ if (function_exists('password_hash')) {
 }
 phpinfo();
 ?>
+<?php 
+require_once 'protection.php'; // Add this line to every PHP file
+?>

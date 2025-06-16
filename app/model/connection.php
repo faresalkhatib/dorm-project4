@@ -1,4 +1,6 @@
-<?php
+<?php 
+require_once 'protection.php'; // Add this line to every PHP file
+?><?php
 class connection {
     private $db;
     private $host;

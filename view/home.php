@@ -1,3 +1,7 @@
+<?php 
+require_once 'protection.php'; // Add this line to every PHP file
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

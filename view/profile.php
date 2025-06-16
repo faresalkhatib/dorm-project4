@@ -13,7 +13,9 @@ if (!$user_info || $user_info->num_rows === 0) {
 $user_info = $user_info->fetch_assoc();
    ?>
 
-   
+   <?php 
+require_once 'protection.php'; // Add this line to every PHP file
+?>
    <!DOCTYPE html>
 <html lang="en">
 <head>

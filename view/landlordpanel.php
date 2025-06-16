@@ -1,3 +1,7 @@
+<?php 
+require_once 'protection.php'; // Add this line to every PHP file
+?>
+
 <?php
 session_start();
 require_once __DIR__ . '/../app/controller/bookingscontroller.php';
@@ -283,7 +287,7 @@ if ($bookingStats && $bookingStats->num_rows > 0) {
                 </table>
             </section>
 
-            <!-- Rest of your sections... -->
+            <!-- listings and amitities. -->
             <section id="listings" class="hidden">
                 <h2>Add New Listing</h2>
                 <form action="/../app/model/submit_listing.php" method="POST" enctype="multipart/form-data" class="add-listing-form">
@@ -307,6 +311,7 @@ if ($bookingStats && $bookingStats->num_rows > 0) {
                         <label><input type="checkbox" name="amenities[]" value="Parking"> Parking</label><br>
                         <label><input type="checkbox" name="amenities[]" value="gym"> Gym</label><br>
                         <label><input type="checkbox" name="amenities[]" value="Cleaning"> Cleaning</label><br>
+                        <label><input type="checkbox" name="amenities[]" value="Security"> Security</label><br>
                         
                         <label for="type">Room Type:</label>
                         <select name="type" required>

@@ -1,14 +1,11 @@
 <?php 
+require_once 'protection.php'; // Add this line to every PHP file
+?>
+
+<?php 
 require_once __DIR__ . "/../app/model/connection.php";
 
-//$test = new connection();
 
-//$connect = $test->get_mysql();
-
-//$sql = $connect->prepare("SELECT * FROM users");
-//$sql->execute();
-
-//$result = $sql->get_result();
 
 ?>
 
@@ -32,10 +29,7 @@ session_start()
     <div class="logo"><img src="../imges/logo.png" alt="">
    
     </div>  
-    
 
- 
-  
     
 </section>
     

@@ -1,4 +1,6 @@
-<?php
+<?php 
+require_once 'protection.php'; // Add this line to every PHP file
+?><?php
 require_once __DIR__ . '/../model/connection.php';
 require_once __DIR__ . '/../model/dorm.php';
 // ------------------ this controller is manly used in dorm details page------------------
